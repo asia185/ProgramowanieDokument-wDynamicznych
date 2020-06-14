@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pl_pl">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="bootstrap javascript site">
+      <title>Projekt</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script src="walidacja.js"></script>
+      <script type="text/javascript" src="tabela/jquery-latest.js"></script>
+      <script type="text/javascript" src="tabela/jquery.tablesorter.js"></script>
+    </head>
+    <body>
+      <style>
+        .modal-backdrop {
+  z-index: -1;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+</style>
+<div class="jumbotron jumbotron-fluid mb-0" style="background-color:#80afbf">
+<div class="container text-center">
+<h1 class="display-6">Laboratoria</h1>
+</div>
+</div>
+<div class="sticky-top" style="margin-bottom:35px;">
+<nav class="navbar navbar-light" style="background-color: #f2e73b">
+
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav mr-auto">
+                                      <a class="nav-link" href="">Strona Główna <span class="sr-only">(current)</span></a>
+                          </ul>
+                          <ul class="navbar-nav mr-auto">
+                            <a class="nav-link" href="http://lcieszynski.zut.edu.pl/index.php?id=8415&no_cache=1">Instrukcje</a>
+                          </ul>
+                        </div>
+                      </nav>
+                                                                  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modalClose" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                                                                                              <!-- Trzy filary -->
+                                                                                              <!-- lewy -->
+              <div class="col-md-3">
+              <div class="btn-group-vertical btn-block" style="text-decoration:none;">
+              <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5> <img src="WI_1.jpg" class="jpg-rounded" alt="Ja" width="120" height="120"></h5>
+          <!--    <h5 class="card-title"><a href="http://lcieszynski.zut.edu.pl/index.php?id=8415&no_cache=1" target=_blank>Instrukcje</h5></a> -->
+              </div>
+              </div>
+              </div>
+              </div>
+                                                                                            <!--srodek -->
+                <div class="col-md-6">
+
+                  <form class="form-horizontal" role="form" id="form1">
+                    <div class="form-group row">
+                      <label for="nazwa_towaru" class="col-sm-2 col-form-label">Nazwa produktu: </label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="nazwa_towaru" placeholder="" onBlur="sprawdzanie_nazwy_towaru(true)" value="">
+                        <div id="blad_nazwa_towaru"></div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="kod_towaru" class="col-sm-2 control-label">Kod towaru: </label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="kod_towaru" placeholder="" onBlur="sprawdzanie_kod_towaru()" value="">
+                        <div id="blad_kod_towaru"></div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="cena_netto" class="col-sm-2 control-label">Cena netto: </label>
+                      <div class="col-sm-10">
+                        <input  class="form-control" id="cena_netto" placeholder="" onBlur="sprawdzanie_cena_netto()" value="">
+                        <div id="blad_cena_netto"></div>
+                      </div>
+                      <span id="cena_netto_validation1"></span>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="stawka_vat" class="col-sm-2 control-label">Stawka VAT: </label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="stawka_vat" placeholder=""  onBlur="sprawdzanie_stawka_vat()" value="">
+                        <div id="blad_stawka_vat"></div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="cena_brutto" class="col-sm-2 control-label">Cena brutto: </label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="cena_brutto" placeholder="" onBlur="brutto()">
+                        <div id="cena_brutto"></div>
+                      </div>
+                      <span id="cena_brutto_validation1"></span>
+                    </div>
+                    <div class="form-group row">
+                            <label for="kategoria" class="col-sm-2 control-label">Kategoria:</label>
+                            <div class="col-sm-10">
+                            <select class="form-control" id="kat" onBlur="sprawdzanie_kategoria()">
+                              <option value="-1">null</option>
+                              <option value="1">Towar 1</option>
+                              <option value="2">Towar 2</option>
+                              <option value="3">Towar 3</option>
+                            </select>
+                            <div id="blad_kategoria"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                                    <label for="opcja" class="col-sm-2 control-label">Opcje do zaznaczenia: </label>
+                            <div class="col-sm-10">
+                                <label class="checkbox-inline"><input type="checkbox" checked value="1" id="1" onBlur="sprawdzanie_opcja()" name="chbx"> opcja pierwsza</label><br />
+                                <label class="checkbox-inline"><input type="checkbox" value="2" id="2" onBlur="sprawdzanie_opcja()" name="chbx"> opcja druga</label><br />
+                                <label class="checkbox-inline"><input type="checkbox" value="3" id="3" onBlur="sprawdzanie_opcja()" name="chbx"> opcja trzecia</label><br />
+                                <label class="checkbox-inline"><input type="checkbox" value="4" id="4" onBlur="sprawdzanie_opcja()" name="chbx"> opcja czwarta</label><br />
+                                <label class="checkbox-inline"><input type="checkbox" checked value="5" id="5" onBlur="sprawdzanie_opcja()" name="chbx"> opcja piąta</label><br />
+                                <div id="blad_opcja"></div>
+                              </div>
+                    </div>
+
+                    <div class="form-group row">
+                            <label for="ocena" class="col-sm-2 control-label">Ocena: </label>
+                            <div class="col-sm-10">
+                                    <label class="radio-inline"><input type="radio" value="1" id="1" name="optradio" onBlur="sprawdzanie_ocena()">1</label> &nbsp&nbsp&nbsp
+                                    <label class="radio-inline"><input type="radio" value="2" id="2" name="optradio" onBlur="sprawdzanie_ocena()">2</label>&nbsp&nbsp&nbsp
+                                    <label class="radio-inline"><input type="radio" value="3" id="3" name="optradio" onBlur="sprawdzanie_ocena()">3</label>&nbsp&nbsp&nbsp
+                                    <label class="radio-inline"><input type="radio" value="4" id="4" name="optradio" onBlur="sprawdzanie_ocena()">4</label>&nbsp&nbsp&nbsp
+                                    <label class="radio-inline"><input type="radio" value="5" id="5" name="optradio" onBlur="sprawdzanie_ocena()">5</label>
+                                    <div id="blad_ocena"></div>
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nazwaZdjecia" class="col-sm-2 control-label">Nazwa zdjęcia:</label>
+                      <div class="col-sm-10">
+                        <input  class="form-control" id="nazwaZdjecia" placeholder="" onBlur="" value="">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                       <center> <button type="button" id="submit1" class="btn btn-info" onclick="appendData();">Dodaj</button></center><!-- class="btn btn-default" onclick="return sprawdzanie()"-->
+  <br><br>
+                       <center><div id="save"></div></center>
+                       <center><div id="allCorrect"></div></center>
+                       <center><div id="info"> </div></center>
+                      </div>
+                    </div>
+                  </form><center>
+
+                   <button onclick="show()" class="btn btn-primary">Sortuj wg:</button>
+                                      <div id="myDIV" style="display:none;">
+                                        <a href="#" id="cenaODnajn"><br>- Ceny od najniższej</a> <br />
+                    <a href="#myTable" id="cenaODnajw">- Ceny od najwyzszej</a> <br />
+                    <a href="#myTable" id="ocenaODnajn">- Oceny od najniższej</a> <br />
+                    <a href="#myTable" id="ocenaODnajwy">- Oceny od najwyzszej</a> <br />
+                    <a href="#myTable" id="nazwaODa">- Nazwy od A do Z</a> <br />
+                    <a href="#myTable" id="nazwaODz">- Nazwy od Z do A</a> <br /><br>
+                                        </div>
+                                        <div id="sprawdzanie_nazwy" style="display: none;" value="null">NULL</div>
+                                        <button onclick="zapisywanieStorage()" class="btn btn-primary">Dodaj produkt do Koszyka!</button>
+                                   <br><br><br>
+                                  <table cellspacing="1" class="table table-hover tablesorter" id="myTable">                      <!-- Tabela -->
+                                    <thead>
+                                        <tr>
+                                            <th><font size="2">Nazwa towaru:</th> </font>
+                                            <th style="background-image: none;"><font size="2">Kod towaru:</th> </font>
+                                            <th><font size="2">Cena netto</th> </font>
+                                            <th style="background-image: none;"><font size="2">VAT:</th> </font>
+                                            <th style="background-image: none;"><font size="2">Cena brutto:</th> </font>
+                                            <th style="background-image: none;"><font size="2">Kategoria:</th> </font>
+                                            <th style="background-image: none;"><font size="2">Opcja:</th> </font>
+                                            <th><font size="2">Ocena</th> </font>
+                                            <th style="background-image: none;"><font size="2">Zdjęcie:</th> </font>
+                                            <th style="background-image: none;"><font size="2">Opcje:</th> </font>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                    <br /><br /><br /><br />
+                    <br /><br /> <br /><br />
+                </div>
+
+
+                                                                                    <!-- prawy -->
+                <div class="col-md-3"> 
+                <div class="card" style="width: 18rem;">
+            <!--    <img src="kosz.jpg" class="jpg-rounded" alt="Koszyk" width="60" height="60"> -->
+                <div class="card-body">
+                <h6> <img src="ja.jpg" class="jpg-rounded" alt="Ja" width="120" height="120"></h6>
+                <p>Joanna Tarasiuk</p>
+                <p>Grupa 32C</p>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+<div class="row">
+		</div>
+    <div class="row fixed-bottom">
+      <div class="col">
+        <footer class="footer">
+          <div class="container text-center">
+            <span class="text-muted"> :) </span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+      </body>
+</html>
